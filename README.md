@@ -47,6 +47,8 @@ We recommend using NVCC 11.8 or later than that.
 
 The installation of SIBR viewers can follow [original 3dgs repo](https://github.com/graphdeco-inria/gaussian-splatting?tab=readme-ov-file#interactive-viewers).
 
+Instead of the SIBR Viewer, you can view your results in [SuperSplat](https://superspl.at/editor)
+
 Our method is based on Conda package and environment management:
 
 ```shell
@@ -63,6 +65,11 @@ cd ..
 cd simple-knn
 pip install .
 cd ..
+```
+
+Optional to run the view optimization with visualization, install Visdom:
+```bash
+pip install visdom
 ```
 
 ***
@@ -151,12 +158,17 @@ And run:
 
 ```shell
 # run colmap
-python convert.py --source_path path_to_your_data/<location> --colmap_executable /opt/homebrew/bin/colmap --camera OPENCV_FISHEYE
+python convert.py --source_path path_to_your_data/<location> --colmap_executable /usr/bin/colmap --camera OPENCV_FISHEYE
 cd path_to_your_data/<location>
 mkdir fish
 cp -r input fish
 cp -r distorted/sparse fish
 mv fish/input fish/images
+```
+
+**Note:** if you do not have COLMAP installed, deactivate your conda environment and run:
+```bash
+sudo apt install colmap -y
 ```
 
 The final directory of a single scene should look like this where `<location>/fish/images` contains distorted images and `<location>/images` contains perspective ones.
